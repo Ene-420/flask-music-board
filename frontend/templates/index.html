@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Music Library{% endblock %}
+
+{% block content %}
+<div class="music-header">
+    <h1>My Music Library</h1>
+    <p>Browse and play your music collection</p>
+    <form action="/search" method="post">
+        <label for="Search"></label>
+        <div class="form-div">
+            <input type="text" id="Search" name="Search" placeholder="Search for Song in Library">
+            <select name="source" id="source">
+                <option value="Library">Library</option>
+                <option value="Search">Search</option>
+            </select>
+        </div>
+        <button type="submit" class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+
+    </form>
+</div>
+
+
+<div class="music-grid">
+    {% for track in tracks %}
+    <div class="track-card">
+        <div class="track-image">
+            <i class="fas fa-music"></i>
+        </div>
+        <div class="track-info">
+            <h3>{{ track.songName }}</h3>
+            <div class="track-meta">{{ track.artistName }}</div>
+            <div class="track-meta">{{ track.albumName }} • {{ track.songYear }}</div>
+            <div class="track-meta">Duration: {{ track.duration }}</div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div style="text-align: center; margin-top: 2rem;">
+    <a>
+        <button class="submit-btn" style="width: auto; padding: 1rem 2rem;">
+            <i class="fas fa-plus"></i> Add More Music
+        </button>
+    </a>
+</div>
+{% endblock %}
